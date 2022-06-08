@@ -12,7 +12,7 @@ class MainScreenViewModel(
     private val bookmarksInteractor: BookmarksInteractor
 ) : BaseViewModel<ViewState>() {
 
-    //запуск события при инициализации ВьюМодели
+    //запуск события при инициализации ВьюМодели, подгружаем наши новости
     init {
         processDataEvent(DataEvent.LoadArticles)
     }

@@ -37,6 +37,7 @@ class ArticlesAdapter(val onItemClicked: (Int) -> Unit) : RecyclerView.Adapter<A
 
         viewHolder.itemView.setOnClickListener {
             onItemClicked.invoke(position)
+            notifyDataSetChanged()
 
         }
 
