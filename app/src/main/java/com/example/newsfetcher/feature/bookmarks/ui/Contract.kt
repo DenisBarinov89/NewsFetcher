@@ -8,9 +8,12 @@ data class ViewState(
     val bookmarksArticle: List<ArticleModel>
 )
 
-sealed class UiEvent()
-sealed class DataEvent() : Event {
+sealed class UiEvent() : Event {
+    data class OnBookmarkedArticleClicked(val index: Int) : UiEvent()
 
+}
+
+sealed class DataEvent() : Event {
     object LoadBookmarks : DataEvent()
     data class onSuccessBookmarksLoaded(val bookmarksArticle: List<ArticleModel>) : DataEvent()
     data class onFailedBookmarksLoaded(val throwable: Throwable) : DataEvent()

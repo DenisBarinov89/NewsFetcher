@@ -39,6 +39,7 @@ class MainScreenViewModel(
                 return previousState.copy(articles = event.articles, articlesShown = event.articles)
             }
             is UIEvent.OnArticleClicked -> {
+                previousState.articles[event.index].bookmarkAddedFlag = true
                 viewModelScope.launch {
                     bookmarksInteractor.create(previousState.articlesShown[event.index])
                 }

@@ -34,6 +34,13 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
             is DataEvent.onSuccessBookmarksLoaded -> {
                 return previousState.copy(bookmarksArticle = event.bookmarksArticle)
             }
+            is UiEvent.OnBookmarkedArticleClicked -> {
+                viewModelScope.launch {
+                    interactor.delete(previousState.bookmarksArticle[event.index])
+                    processDataEvent(DataEvent.LoadBookmarks)
+                }
+                return null
+            }
             else -> return null
         }
     }

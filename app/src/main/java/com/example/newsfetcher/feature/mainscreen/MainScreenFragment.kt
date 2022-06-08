@@ -21,14 +21,18 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     private val tvTitle: TextView by lazy { requireActivity().findViewById(R.id.tvTitle) }
     private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
 
+
     private val adapter: ArticlesAdapter by lazy {
         ArticlesAdapter { index ->
-            viewModel.processUIEvent(UIEvent.OnArticleClicked(index))
+            viewModel.processUIEvent(UIEvent.OnArticleClicked(index)
+            )
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
         rvArticles.adapter = adapter
@@ -61,6 +65,9 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
         tvTitle.isVisible = !viewState.isSearchEnabled
         etSearch.isVisible = viewState.isSearchEnabled
         adapter.setData(viewState.articlesShown)
+
+
+
 
 
     }
