@@ -5,7 +5,7 @@ import com.example.newsfetcher.feature.data.ArticlesRepository
 import com.example.newsfetcher.feature.data.ArticlesRepositoryImpl
 import com.example.newsfetcher.feature.data.NewsApi
 import com.example.newsfetcher.feature.domain.ArticlesInteractor
-import com.example.newsfetcher.feature.presentation.MainScreenViewModel
+import com.example.newsfetcher.feature.mainscreen.MainScreenViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -20,7 +20,7 @@ val mainScreenModule = module {
     single<ArticlesRepository> {ArticlesRepositoryImpl(source = get())}
 
     viewModel {
-        MainScreenViewModel(interactor = get())
+        MainScreenViewModel(interactor = get(), bookmarksInteractor = get())
     }
 
 
