@@ -10,30 +10,35 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
+    private var fragmentChanged: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
+            .commit()
+
         bottomNavigationMenu.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.itemMain -> {
-                    selectTab(MainScreenFragment())
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(MainScreenFragment())
+                    }
                 }
-
                 R.id.itemBookbarks -> {
-                    selectTab(BookmarksFragment())
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(BookmarksFragment())
+                    }
                 }
                 else -> {}
             }
             true
         }
-
-        bottomNavigationMenu.selectedItemId = R.id.itemMain
     }
 
     private fun selectTab(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
+            .commit()
     }
-
 }

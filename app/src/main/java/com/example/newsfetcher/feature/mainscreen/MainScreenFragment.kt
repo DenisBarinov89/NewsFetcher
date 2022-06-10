@@ -66,10 +66,6 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
         etSearch.isVisible = viewState.isSearchEnabled
         adapter.setData(viewState.articlesShown)
 
-
-
-
-
     }
 
 }
