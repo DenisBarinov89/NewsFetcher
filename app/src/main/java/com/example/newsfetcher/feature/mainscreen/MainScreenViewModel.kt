@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.mainscreen
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
@@ -11,6 +12,8 @@ class MainScreenViewModel(
     private val interactor: ArticlesInteractor,
     private val bookmarksInteractor: BookmarksInteractor
 ) : BaseViewModel<ViewState>() {
+
+    val filterData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     //запуск события при инициализации ВьюМодели, подгружаем наши новости
     init {

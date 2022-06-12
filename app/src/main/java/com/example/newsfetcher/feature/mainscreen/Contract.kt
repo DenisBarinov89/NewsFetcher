@@ -15,14 +15,13 @@ sealed class UIEvent : Event {
     object OnSearchButtonClicked : UIEvent()
     data class OnSearchEdit(val text: String) : UIEvent()
 
+
+
 }
 
 sealed class DataEvent : Event {
 
     object LoadArticles : DataEvent()
     data class OnLoadArticlesSucceed(val articles: List<ArticleModel>) : DataEvent()
-
-
-
 
 }

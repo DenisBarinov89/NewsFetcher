@@ -8,4 +8,8 @@ class ArticlesRemoteSource(private val api: NewsApi) {
         return api.getArticles()
     }
 
+    suspend fun getArticlesSortedByPopularity() : ArticlesRemoteModel {
+        return api.getArticlesSortedByPopularity()
+    }
+
 }

@@ -2,19 +2,25 @@ package com.example.newsfetcher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.example.newsfetcher.feature.bookmarks.ui.BookmarksFragment
+import com.example.newsfetcher.feature.filters.FilterArticlesFragment
 import com.example.newsfetcher.feature.mainscreen.MainScreenFragment
+import com.example.newsfetcher.feature.mainscreen.MainScreenViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
-    private var fragmentChanged: Boolean = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
             .commit()
@@ -31,10 +37,17 @@ class MainActivity : AppCompatActivity() {
                         selectTab(BookmarksFragment())
                     }
                 }
+                R.id.itemFilter -> {
+
+                    selectTab(FilterArticlesFragment())
+
+                }
                 else -> {}
             }
             true
         }
+
+
     }
 
     private fun selectTab(fragment: Fragment) {

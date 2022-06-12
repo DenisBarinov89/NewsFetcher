@@ -9,4 +9,10 @@ class ArticlesRepositoryImpl(private val source: ArticlesRemoteSource) : Article
                 it.toDomain()
             }
     }
+
+    override suspend fun getArticlesSortedByPopularity(): List<ArticleModel> {
+        return source.getArticlesSortedByPopularity().articleList.map {
+            it.toDomain()
+        }
+    }
 }

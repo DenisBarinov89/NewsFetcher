@@ -11,4 +11,10 @@
         android:icon="@drawable/ic_bookmarks"
         android:title="@string/bookmarks"
         />
+
+    <item
+        android:id="@+id/itemFilter"
+        android:icon="@drawable/ic_filter_list"
+        android:title="Фильтр"
+        />
 </menu>

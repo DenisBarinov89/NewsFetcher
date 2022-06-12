@@ -12,4 +12,14 @@ interface NewsApi {
         @Query("country") country: String = "ru",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
+
+    @GET("v2/top-headlines")
+    suspend fun getArticlesSortedByPopularity(
+        @Query("country") country: String = "ru",
+        @Query("sortBy") sortBy: String = "popularity",
+        @Query("apiKey") apiKey: String = API_KEY
+    ) : ArticlesRemoteModel
+
+
+
 }

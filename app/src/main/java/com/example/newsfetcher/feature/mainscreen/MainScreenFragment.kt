@@ -6,11 +6,14 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfetcher.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
@@ -22,10 +25,22 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
 
 
+
+
     private val adapter: ArticlesAdapter by lazy {
         ArticlesAdapter { index ->
             viewModel.processUIEvent(UIEvent.OnArticleClicked(index)
             )
+        }
+    }
+
+    companion object {
+        fun getNewInstance(args: String) : MainScreenFragment {
+            val bundle = Bundle()
+            bundle.putString("sort", args)
+            val mainScreenFragment = MainScreenFragment()
+            mainScreenFragment.arguments = bundle
+            return mainScreenFragment
         }
     }
 
@@ -34,13 +49,24 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
 
 
 
+
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
+
+
+
         rvArticles.adapter = adapter
 
+
+
+        when (this.arguments?.getString("sort")) {
+            "default" -> {}
+        }
+
+
+
+
         ivSearch.setOnClickListener {
-
             viewModel.processUIEvent(UIEvent.OnSearchButtonClicked)
-
         }
 
         etSearch.addTextChangedListener(object : TextWatcher {
@@ -64,8 +90,8 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
     private fun render(viewState: ViewState) {
         tvTitle.isVisible = !viewState.isSearchEnabled
         etSearch.isVisible = viewState.isSearchEnabled
-        adapter.setData(viewState.articlesShown)
 
+        adapter.setData(viewState.articlesShown)
     }
 
 }
