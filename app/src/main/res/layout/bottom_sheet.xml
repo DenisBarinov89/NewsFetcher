@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/grey"
+    android:padding="15dp"
+    >
+
+
+    <TextView
+        android:id="@+id/tvFilterMenuName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/filters_menu_name"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvSortSelectedMenuName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filter_sort_name"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvPopularity"
+        style="@style/ActionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_name_popularity">
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.4"
+        android:background="@color/grey">
+    </View>
+    <TextView
+        android:id="@+id/tvTitleAscending"
+        style="@style/ActionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_name_title">
+    </TextView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.4"
+        android:background="@color/grey">
+    </View>
+    <TextView
+        android:id="@+id/tvDateAscending"
+        style="@style/ActionItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort_name_date_descending">
+    </TextView>
+
+
+</LinearLayout>

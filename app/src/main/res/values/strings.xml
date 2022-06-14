@@ -5,5 +5,11 @@
     <string name="appName">News Fetcher</string>
     <string name="filters_menu_name">Фильтры</string>
     <string name="filter_sort_name">Сортировать по</string>
-    <string name="sort_name_date_descending">Сначала старые</string>
+    <string name="sort_name_date_descending">По дате</string>
+    <string name="sort_name_popularity">По популярности</string>
+    <string name="sort_name_title">По алфавиту</string>
+    <string name="actionShare">Share with Friends</string>
+    <string name="actionFavorites">Add to favorites</string>
+    <string name="actionBookmark">Bookmark</string>
+    <string name="actionInfo">More information</string>
 </resources>

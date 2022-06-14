@@ -13,8 +13,6 @@ class MainScreenViewModel(
     private val bookmarksInteractor: BookmarksInteractor
 ) : BaseViewModel<ViewState>() {
 
-    val filterData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-
     //запуск события при инициализации ВьюМодели, подгружаем наши новости
     init {
         processDataEvent(DataEvent.LoadArticles)
