@@ -15,4 +15,12 @@ class ArticlesRepositoryImpl(private val source: ArticlesRemoteSource) : Article
             it.toDomain()
         }
     }
+
+    override suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String): List<ArticleModel> {
+        return source.getArticlesFilterByDate(dateFrom = dateFrom, dateTo = dateTo).articleList.map {
+            it.toDomain()
+        }
+    }
+
+
 }

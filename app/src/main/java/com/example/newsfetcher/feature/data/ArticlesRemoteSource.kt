@@ -12,4 +12,8 @@ class ArticlesRemoteSource(private val api: NewsApi) {
         return api.getArticlesSortedBy(sortBy = sortBy)
     }
 
+    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String) : ArticlesRemoteModel {
+        return api.getArticlesFilterByDate(dateFrom = dateFrom, dateTo = dateTo)
+    }
+
 }

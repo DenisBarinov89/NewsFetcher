@@ -17,7 +17,16 @@ interface NewsApi {
     suspend fun getArticlesSortedBy(
         @Query("language") country: String = "en",
         @Query("sortBy") sortBy: String,
-        @Query("q") q: String = "top",
+        @Query("q") q: String = "all",
+        @Query("apiKey") apiKey: String = API_KEY
+    ) : ArticlesRemoteModel
+
+    @GET("v2/everything")
+    suspend fun getArticlesFilterByDate(
+        @Query("language") country: String = "en",
+        @Query("from") dateFrom: String,
+        @Query("to") dateTo: String,
+        @Query("q") q: String = "all",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
 

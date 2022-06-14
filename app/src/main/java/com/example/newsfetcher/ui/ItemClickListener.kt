@@ -1,5 +1,5 @@
 package com.example.newsfetcher.ui
 
 interface ItemClickListener {
-    fun onItemClick(item: String?)
+    fun onItemClick(item: String?, dateFrom: String?, dateTo: String?)
 }

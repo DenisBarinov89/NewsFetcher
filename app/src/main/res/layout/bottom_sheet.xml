@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/grey"
-    android:padding="15dp"
-    >
+    android:orientation="vertical"
+    android:padding="15dp">
 
 
     <TextView
@@ -29,34 +28,66 @@
         style="@style/ActionItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sort_name_popularity">
-    </TextView>
+        android:text="@string/sort_name_popularity" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:alpha="0.4"
-        android:background="@color/grey">
-    </View>
+        android:background="@color/grey"/>
+
     <TextView
         android:id="@+id/tvTitleAscending"
         style="@style/ActionItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sort_name_title">
-    </TextView>
+        android:text="@string/sort_name_title"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:alpha="0.4"
-        android:background="@color/grey">
-    </View>
+        android:background="@color/grey"/>
+
     <TextView
         android:id="@+id/tvDateAscending"
         style="@style/ActionItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sort_name_date_descending">
-    </TextView>
+        android:text="@string/sort_name_date_descending"/>
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Дата"
+        android:textStyle="bold"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etDateFrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:hint="@string/et_date_from_hint" />
+
+        <EditText
+            android:id="@+id/etDateTo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:hint="@string/et_date_to_hint" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnGetFilterResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/button_show_filter_result"
+        android:backgroundTint="@color/dark_grey"
+        android:textColor="@color/white"/>
 </LinearLayout>

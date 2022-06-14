@@ -1,19 +1,13 @@
 package com.example.newsfetcher.feature.filters
 
-import android.provider.ContactsContract
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.GET_ARTICLES_BY_POPULARITY
 import com.example.newsfetcher.GET_ARTICLES_BY_PUBLISHED_AT
-import com.example.newsfetcher.GET_ARTICLES_BY_RELEVANCY
 import com.example.newsfetcher.SORT_TITLE_ASCENDING
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
-import com.example.newsfetcher.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsfetcher.feature.domain.ArticlesInteractor
-import com.example.newsfetcher.feature.mainscreen.ViewState
 import kotlinx.coroutines.launch
-import okhttp3.internal.wait
-import kotlin.concurrent.thread
 
 class FilterArticlesViewModel(
     private val interactor: ArticlesInteractor
@@ -33,16 +27,22 @@ class FilterArticlesViewModel(
 
 
             is UIEvent.FilterSortByDateClicked -> {
-                processDataEvent(DataEvent.LoadFilterArticles(sortBy = GET_ARTICLES_BY_PUBLISHED_AT))
+                processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_PUBLISHED_AT))
             }
             is UIEvent.FilterSortByPopularityClicked -> {
-                processDataEvent(DataEvent.LoadFilterArticles(sortBy = GET_ARTICLES_BY_POPULARITY))
+                processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_POPULARITY))
             }
             is UIEvent.FilterSortByTitleClicked -> {
-                processDataEvent(DataEvent.LoadFilterArticles(sortBy = SORT_TITLE_ASCENDING))
+                processDataEvent(DataEvent.LoadSortedArticles(sortBy = SORT_TITLE_ASCENDING))
+            }
+            is UIEvent.ShowResultDateFilterButtonClicked -> {
+                processDataEvent(DataEvent.LoadFilterArticlesByDate(dateFrom = event.dateFrom, dateTo = event.dateTo))
             }
 
-            is DataEvent.LoadFilterArticles -> {
+
+
+
+            is DataEvent.LoadSortedArticles -> {
                 viewModelScope.launch {
                     interactor.getArticlesSortBy(event.sortBy).fold(
                         onError = {},
@@ -55,7 +55,21 @@ class FilterArticlesViewModel(
                 }
             }
 
-            is DataEvent.OnLoadSortedArticlesSucceed -> {
+            is DataEvent.LoadFilterArticlesByDate -> {
+                viewModelScope.launch {
+                    interactor.getArticlesFilterByDate(dateFrom = event.dateFrom, dateTo = event.dateTo).fold(
+                        onError = {},
+                        onSuccess = {
+                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it))
+                        }
+                    )
+
+                }
+
+            }
+
+
+            is DataEvent.OnLoadSortedArticlesSucceed -> {  //вывод полученных статей на экран
                 return previousState.copy(articlesShown = event.filterArticles)
             }
 

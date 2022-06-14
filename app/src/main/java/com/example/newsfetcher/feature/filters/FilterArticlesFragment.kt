@@ -15,15 +15,16 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
 
     private val viewModel: FilterArticlesViewModel by viewModel()
     private val rvFilterArticles: RecyclerView by lazy { requireActivity().findViewById(R.id.rvFilterArticles) }
+    private val adapter: FilterArticlesAdapter by lazy { FilterArticlesAdapter() }
 
-    private val adapter: FilterArticlesAdapter by lazy {
-        FilterArticlesAdapter()
-    }
+
 
     companion object {
-        fun getNewInstance(args: String) : FilterArticlesFragment {
+        fun getNewInstance(args: String, dateFrom: String?, dateTo: String?) : FilterArticlesFragment {
             val bundle = Bundle()
             bundle.putString(BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT, args)
+            bundle.putString("dateFrom", dateFrom)
+            bundle.putString("dateTo", dateTo)
             val filterArticlesFragment = FilterArticlesFragment()
             filterArticlesFragment.arguments = bundle
             return filterArticlesFragment
@@ -33,6 +34,7 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         rvFilterArticles.adapter = adapter
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
@@ -47,6 +49,9 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
             SORT_DATE_ASCENDING -> {
 //                viewModel.processUIEvent(UIEvent.OnTestPreviousViewState)
                 viewModel.processUIEvent(UIEvent.FilterSortByDateClicked)
+            }
+            GET_RESULT_BUTTON -> {
+                viewModel.processUIEvent(UIEvent.ShowResultDateFilterButtonClicked(dateFrom = arguments?.get("dateFrom").toString(), dateTo = arguments?.get("dateTo").toString()))
             }
         }
 

@@ -12,4 +12,7 @@
     <string name="actionFavorites">Add to favorites</string>
     <string name="actionBookmark">Bookmark</string>
     <string name="actionInfo">More information</string>
+    <string name="et_date_from_hint">От</string>
+    <string name="et_date_to_hint">До</string>
+    <string name="button_show_filter_result">Показать результаты</string>
 </resources>

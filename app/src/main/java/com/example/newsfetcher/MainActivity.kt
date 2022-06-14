@@ -2,6 +2,7 @@ package com.example.newsfetcher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
@@ -18,6 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity(), ItemClickListener {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         }
     }
 
-    fun openBottomSheet() {
+    private fun openBottomSheet() {
         val showDialogFragment = ActionBottom.newInstance()
         showDialogFragment.show(
             supportFragmentManager, ActionBottom.TAG
@@ -61,17 +63,20 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
             .commit()
     }
 
-    override fun onItemClick(item: String?) {
+    override fun onItemClick(item: String?, dateFrom: String?, dateTo: String?) {
 
         when (item) {
             SORT_POPULARITY -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_POPULARITY))
+                selectTab(FilterArticlesFragment.getNewInstance(SORT_POPULARITY, null,null))
             }
             SORT_TITLE_ASCENDING -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_TITLE_ASCENDING))
+                selectTab(FilterArticlesFragment.getNewInstance(SORT_TITLE_ASCENDING, null, null))
             }
             SORT_DATE_ASCENDING -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_DATE_ASCENDING))
+                selectTab(FilterArticlesFragment.getNewInstance(SORT_DATE_ASCENDING, null, null))
+            }
+            GET_RESULT_BUTTON -> {
+                selectTab(FilterArticlesFragment.getNewInstance(GET_RESULT_BUTTON, dateFrom, dateTo))
             }
 
 

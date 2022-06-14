@@ -12,3 +12,6 @@ const val BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT = "Sort"
 const val GET_ARTICLES_BY_POPULARITY = "popularity"
 const val GET_ARTICLES_BY_PUBLISHED_AT = "publishedAt"
 const val GET_ARTICLES_BY_RELEVANCY = "relevancy"
+
+//Текст кнопок
+const val GET_RESULT_BUTTON = "Показать результаты"

@@ -46,13 +46,6 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
 
 
 
-        when (this.arguments?.getString("sort")) {
-            "default" -> {}
-        }
-
-
-
-
         ivSearch.setOnClickListener {
             viewModel.processUIEvent(UIEvent.OnSearchButtonClicked)
         }

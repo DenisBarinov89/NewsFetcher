@@ -8,4 +8,6 @@ interface ArticlesRepository {
 
     suspend fun getArticlesSortedBy(sortBy: String) : List<ArticleModel>
 
+    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String) : List<ArticleModel>
+
 }
