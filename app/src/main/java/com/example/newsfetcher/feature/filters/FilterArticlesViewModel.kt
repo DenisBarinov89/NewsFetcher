@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.GET_ARTICLES_BY_POPULARITY
 import com.example.newsfetcher.GET_ARTICLES_BY_PUBLISHED_AT
 import com.example.newsfetcher.GET_ARTICLES_BY_RELEVANCY
+import com.example.newsfetcher.SORT_TITLE_ASCENDING
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
 import com.example.newsfetcher.feature.bookmarks.domain.BookmarksInteractor
@@ -29,38 +30,39 @@ class FilterArticlesViewModel(
 
         when (event) {
 
+
+
+            is UIEvent.FilterSortByDateClicked -> {
+                processDataEvent(DataEvent.LoadFilterArticles(sortBy = GET_ARTICLES_BY_PUBLISHED_AT))
+            }
             is UIEvent.FilterSortByPopularityClicked -> {
-                viewModelScope.launch {
-                    interactor.getArticlesSortBy(GET_ARTICLES_BY_POPULARITY).fold(
-                        onError = {},
-                        onSuccess = { processDataEvent(DataEvent.OnLoadArticlesByPopularitySucceed(it)) }
-                    )
-                }
+                processDataEvent(DataEvent.LoadFilterArticles(sortBy = GET_ARTICLES_BY_POPULARITY))
             }
             is UIEvent.FilterSortByTitleClicked -> {
+                processDataEvent(DataEvent.LoadFilterArticles(sortBy = SORT_TITLE_ASCENDING))
+            }
+
+            is DataEvent.LoadFilterArticles -> {
                 viewModelScope.launch {
-                    interactor.getArticlesSortBy(GET_ARTICLES_BY_RELEVANCY).fold(
+                    interactor.getArticlesSortBy(event.sortBy).fold(
                         onError = {},
-                        onSuccess = { processDataEvent(DataEvent.OnLoadArticlesByTitleSucceed(it)) }
+                        onSuccess = {
+                            if (event.sortBy == SORT_TITLE_ASCENDING)
+                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it.sortedBy { it.title }))
+                            else
+                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it)) }
                     )
                 }
             }
 
-            is DataEvent.OnLoadArticlesByPopularitySucceed -> {
+            is DataEvent.OnLoadSortedArticlesSucceed -> {
                 return previousState.copy(articlesShown = event.filterArticles)
-            }
-            is DataEvent.OnLoadArticlesByTitleSucceed -> {
-                return previousState.copy(articlesShown = event.filterArticles.sortedBy {
-                    it.title
-                })
             }
 
 //            is UIEvent.OnTestPreviousViewState -> {
 //                return previousState.copy(articlesShown = previousState.filterArticles.sortedBy { it.title })
 //            }
         }
-
         return null
-
     }
 }

@@ -45,7 +45,8 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
                 viewModel.processUIEvent(UIEvent.FilterSortByTitleClicked)
             }
             SORT_DATE_ASCENDING -> {
-                viewModel.processUIEvent(UIEvent.OnTestPreviousViewState)
+//                viewModel.processUIEvent(UIEvent.OnTestPreviousViewState)
+                viewModel.processUIEvent(UIEvent.FilterSortByDateClicked)
             }
         }
 
