@@ -20,7 +20,7 @@ class FilterArticlesViewModel(
 ) : BaseViewModel<FiltersViewState>() {
 
 //    init {
-//        processDataEvent(DataEvent.LoadArticlesByPopularity)
+//        processDataEvent(DataEvent.LoadFilterArticles)
 //    }
 
     override fun initialViewState(): FiltersViewState =

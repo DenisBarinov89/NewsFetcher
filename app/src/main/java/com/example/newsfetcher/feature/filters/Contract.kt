@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.filters
 
+import com.example.newsfetcher.GET_ARTICLES_BY_POPULARITY
 import com.example.newsfetcher.base.Event
 import com.example.newsfetcher.feature.domain.ArticleModel
 
@@ -18,6 +19,6 @@ sealed class UIEvent : Event {
 
 sealed class DataEvent : Event {
 
-    data class LoadFilterArticles(val sortBy: String) : DataEvent()
+    data class LoadFilterArticles(val sortBy: String = GET_ARTICLES_BY_POPULARITY) : DataEvent()
     data class OnLoadSortedArticlesSucceed(val filterArticles: List<ArticleModel>) : DataEvent()
 }
