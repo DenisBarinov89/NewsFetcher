@@ -14,9 +14,9 @@ interface NewsApi {
     ) : ArticlesRemoteModel
 
     @GET("v2/everything")
-    suspend fun getArticlesSortedByPopularity(
+    suspend fun getArticlesSortedBy(
         @Query("language") country: String = "en",
-        @Query("sortBy") sortBy: String = "popularity",
+        @Query("sortBy") sortBy: String,
         @Query("q") q: String = "top",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel

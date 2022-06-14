@@ -2,6 +2,9 @@ package com.example.newsfetcher.feature.filters
 
 import android.provider.ContactsContract
 import androidx.lifecycle.viewModelScope
+import com.example.newsfetcher.GET_ARTICLES_BY_POPULARITY
+import com.example.newsfetcher.GET_ARTICLES_BY_PUBLISHED_AT
+import com.example.newsfetcher.GET_ARTICLES_BY_RELEVANCY
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
 import com.example.newsfetcher.feature.bookmarks.domain.BookmarksInteractor
@@ -15,9 +18,9 @@ class FilterArticlesViewModel(
     private val interactor: ArticlesInteractor
 ) : BaseViewModel<FiltersViewState>() {
 
-    init {
-        processDataEvent(DataEvent.LoadArticlesByPopularity)
-    }
+//    init {
+//        processDataEvent(DataEvent.LoadArticlesByPopularity)
+//    }
 
     override fun initialViewState(): FiltersViewState =
         FiltersViewState(filterArticles = emptyList(), articlesShown = emptyList())
@@ -26,22 +29,20 @@ class FilterArticlesViewModel(
 
         when (event) {
 
-            is DataEvent.LoadArticlesByPopularity -> {
+            is UIEvent.FilterSortByPopularityClicked -> {
                 viewModelScope.launch {
-                    interactor.getArticlesSortedByPopularity().fold(
+                    interactor.getArticlesSortBy(GET_ARTICLES_BY_POPULARITY).fold(
                         onError = {},
                         onSuccess = { processDataEvent(DataEvent.OnLoadArticlesByPopularitySucceed(it)) }
                     )
-
                 }
             }
-            is DataEvent.LoadArticlesSortingByTitle -> {
+            is UIEvent.FilterSortByTitleClicked -> {
                 viewModelScope.launch {
-                    interactor.getArticlesSortedByPopularity().fold(
+                    interactor.getArticlesSortBy(GET_ARTICLES_BY_RELEVANCY).fold(
                         onError = {},
                         onSuccess = { processDataEvent(DataEvent.OnLoadArticlesByTitleSucceed(it)) }
                     )
-
                 }
             }
 
@@ -54,9 +55,9 @@ class FilterArticlesViewModel(
                 })
             }
 
-            is UIEvent.OnTestPreviousViewState -> {
-                return previousState.copy(articlesShown = previousState.filterArticles.sortedBy { it.title })
-            }
+//            is UIEvent.OnTestPreviousViewState -> {
+//                return previousState.copy(articlesShown = previousState.filterArticles.sortedBy { it.title })
+//            }
         }
 
         return null

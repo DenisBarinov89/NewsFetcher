@@ -5,10 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsfetcher.R
-import com.example.newsfetcher.SORT_DATE_ASCENDING
-import com.example.newsfetcher.SORT_POPULARITY
-import com.example.newsfetcher.SORT_TITLE_ASCENDING
+import com.example.newsfetcher.*
 import com.example.newsfetcher.feature.mainscreen.MainScreenFragment
 import com.example.newsfetcher.feature.mainscreen.ViewState
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +23,7 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
     companion object {
         fun getNewInstance(args: String) : FilterArticlesFragment {
             val bundle = Bundle()
-            bundle.putString("sort", args)
+            bundle.putString(BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT, args)
             val filterArticlesFragment = FilterArticlesFragment()
             filterArticlesFragment.arguments = bundle
             return filterArticlesFragment
@@ -40,12 +37,12 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
         rvFilterArticles.adapter = adapter
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
 
-        when (arguments?.get("sort")) {
+        when (arguments?.get(BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT)) {
             SORT_POPULARITY -> {
-                viewModel.processUIEvent(DataEvent.LoadArticlesByPopularity)
+                viewModel.processUIEvent(UIEvent.FilterSortByPopularityClicked)
             }
             SORT_TITLE_ASCENDING -> {
-                viewModel.processUIEvent(DataEvent.LoadArticlesSortingByTitle)
+                viewModel.processUIEvent(UIEvent.FilterSortByTitleClicked)
             }
             SORT_DATE_ASCENDING -> {
                 viewModel.processUIEvent(UIEvent.OnTestPreviousViewState)

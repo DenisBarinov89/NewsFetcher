@@ -11,16 +11,15 @@ data class FiltersViewState(
 sealed class UIEvent : Event {
 
     object OnTestPreviousViewState : UIEvent()
-
+    object FilterSortByPopularityClicked : UIEvent()
+    object FilterSortByTitleClicked : UIEvent()
 
 }
 
 sealed class DataEvent : Event {
 
-    object LoadArticlesByPopularity : DataEvent()
-    data class OnLoadArticlesByPopularitySucceed(val filterArticles: List<ArticleModel>) : DataEvent()
 
-    object LoadArticlesSortingByTitle : DataEvent()
+    data class OnLoadArticlesByPopularitySucceed(val filterArticles: List<ArticleModel>) : DataEvent()
     data class OnLoadArticlesByTitleSucceed(val filterArticles: List<ArticleModel>) : DataEvent()
 
 

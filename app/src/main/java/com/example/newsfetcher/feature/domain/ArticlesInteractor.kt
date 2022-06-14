@@ -9,6 +9,6 @@ class ArticlesInteractor(private val repository: ArticlesRepository) {
     //еще раз объяснить, что такое attempt
     suspend fun getArticles() = attempt { repository.getArticles() }
 
-    suspend fun getArticlesSortedByPopularity() = attempt { repository.getArticlesSortedByPopularity() }
+    suspend fun getArticlesSortBy(sortBy: String) = attempt { repository.getArticlesSortedBy(sortBy) }
     }
 

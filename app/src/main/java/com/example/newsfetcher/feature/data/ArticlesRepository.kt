@@ -6,6 +6,6 @@ interface ArticlesRepository {
 
     suspend fun getArticles() : List<ArticleModel>
 
-    suspend fun getArticlesSortedByPopularity() : List<ArticleModel>
+    suspend fun getArticlesSortedBy(sortBy: String) : List<ArticleModel>
 
 }
