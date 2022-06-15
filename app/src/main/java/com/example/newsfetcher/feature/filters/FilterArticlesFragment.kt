@@ -8,28 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsfetcher.*
 import com.example.newsfetcher.feature.mainscreen.MainScreenFragment
 import com.example.newsfetcher.feature.mainscreen.ViewState
+import com.example.newsfetcher.ui.ActionBottom
+import com.example.newsfetcher.ui.ItemClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
+class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen), ItemClickListener {
 
 
     private val viewModel: FilterArticlesViewModel by viewModel()
     private val rvFilterArticles: RecyclerView by lazy { requireActivity().findViewById(R.id.rvFilterArticles) }
     private val adapter: FilterArticlesAdapter by lazy { FilterArticlesAdapter() }
-
-
-
-    companion object {
-        fun getNewInstance(args: String, dateFrom: String?, dateTo: String?) : FilterArticlesFragment {
-            val bundle = Bundle()
-            bundle.putString(BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT, args)
-            bundle.putString("dateFrom", dateFrom)
-            bundle.putString("dateTo", dateTo)
-            val filterArticlesFragment = FilterArticlesFragment()
-            filterArticlesFragment.arguments = bundle
-            return filterArticlesFragment
-        }
-    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,8 +26,23 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
 
         rvFilterArticles.adapter = adapter
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
+        openBottomSheet()
+    }
 
-        when (arguments?.get(BUNDLE_KEY_SORT_FOR_FILTER_FRAGMENT)) {
+    private fun render(viewState: FiltersViewState) {
+        adapter.setData(viewState.articlesShown)
+    }
+
+    fun openBottomSheet() {
+        val showDialogFragment = ActionBottom.newInstance(this)
+        showDialogFragment.show(
+            childFragmentManager, ActionBottom.TAG
+        )
+    }
+
+    override fun onItemClick(item: String?, dateFrom: String?, dateTo: String?) {
+
+        when (item) {
             SORT_POPULARITY -> {
                 viewModel.processUIEvent(UIEvent.FilterSortByPopularityClicked)
             }
@@ -47,20 +50,15 @@ class FilterArticlesFragment : Fragment(R.layout.fragment_filter_screen) {
                 viewModel.processUIEvent(UIEvent.FilterSortByTitleClicked)
             }
             SORT_DATE_ASCENDING -> {
-//                viewModel.processUIEvent(UIEvent.OnTestPreviousViewState)
                 viewModel.processUIEvent(UIEvent.FilterSortByDateClicked)
             }
             GET_RESULT_BUTTON -> {
-                viewModel.processUIEvent(UIEvent.ShowResultDateFilterButtonClicked(dateFrom = arguments?.get("dateFrom").toString(), dateTo = arguments?.get("dateTo").toString()))
+                viewModel.processUIEvent(
+                    UIEvent.ShowResultDateFilterButtonClicked(
+                        dateFrom = dateFrom.toString(), dateTo = dateTo.toString()
+                    )
+                )
             }
         }
-
     }
-
-    private fun render(viewState: FiltersViewState) {
-        adapter.setData(viewState.articlesShown)
-
-    }
-
-
 }

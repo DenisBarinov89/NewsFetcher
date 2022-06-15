@@ -4,8 +4,8 @@ class ActionBottom {
 
     companion object{
         const val TAG = "ActionBottomDialog"
-        fun newInstance(): ActionBottomDialogFragment {
-            return ActionBottomDialogFragment()
+        fun newInstance(mListener:ItemClickListener): ActionBottomDialogFragment {
+            return ActionBottomDialogFragment(mListener)
         }
     }
 

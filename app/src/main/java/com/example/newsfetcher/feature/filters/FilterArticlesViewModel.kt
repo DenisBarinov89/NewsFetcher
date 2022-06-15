@@ -24,8 +24,6 @@ class FilterArticlesViewModel(
 
         when (event) {
 
-
-
             is UIEvent.FilterSortByDateClicked -> {
                 processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_PUBLISHED_AT))
             }
@@ -38,9 +36,6 @@ class FilterArticlesViewModel(
             is UIEvent.ShowResultDateFilterButtonClicked -> {
                 processDataEvent(DataEvent.LoadFilterArticlesByDate(dateFrom = event.dateFrom, dateTo = event.dateTo))
             }
-
-
-
 
             is DataEvent.LoadSortedArticles -> {
                 viewModelScope.launch {

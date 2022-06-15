@@ -12,9 +12,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import java.lang.RuntimeException
 
-class ActionBottomDialogFragment : BottomSheetDialogFragment(), View.OnClickListener {
+class ActionBottomDialogFragment(private var mListener:ItemClickListener) : BottomSheetDialogFragment(), View.OnClickListener {
 
-    private var mListener: ItemClickListener? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,39 +31,18 @@ class ActionBottomDialogFragment : BottomSheetDialogFragment(), View.OnClickList
         tvPopularity.setOnClickListener(this)
         tvTitleAscending.setOnClickListener(this)
         btnGetFilterResult.setOnClickListener(this)
-
-
     }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        mListener = if (context is ItemClickListener) {
-            context
-        }
-        else {
-            throw RuntimeException(
-                context.toString() + "Must Implement ItemClickListener"
-            )
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
-    }
-
 
     override fun onClick(p0: View?) {
 
         val checkElementType : Boolean = p0 is TextView
         if (checkElementType) {
             p0 as TextView
-            mListener?.onItemClick(p0.text.toString(), dateFrom = etDateFrom.editableText.toString(), dateTo = etDateTo.editableText.toString())
+            mListener.onItemClick(p0.text.toString(), null, null)
             dismiss()
         } else {
             p0 as Button
-            mListener?.onItemClick(p0.text.toString(), dateFrom = etDateFrom.editableText.toString(), dateTo = etDateTo.editableText.toString())
+            mListener.onItemClick(p0.text.toString(), dateFrom = etDateFrom.editableText.toString(), dateTo = etDateTo.editableText.toString())
             dismiss()
         }
     }

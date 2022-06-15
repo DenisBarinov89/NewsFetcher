@@ -16,11 +16,9 @@ import com.example.newsfetcher.ui.ItemClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), ItemClickListener {
+class MainActivity : AppCompatActivity() {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +41,14 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
                     }
                 }
                 R.id.itemFilter -> {
-                    openBottomSheet()
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(FilterArticlesFragment())
+                    } else {
+                        val fr = supportFragmentManager.findFragmentById(R.id.container)
+                        if (fr is FilterArticlesFragment) {
+                            fr.openBottomSheet()
+                        }
+                    }
                 }
                 else -> {}
             }
@@ -51,36 +56,9 @@ class MainActivity : AppCompatActivity(), ItemClickListener {
         }
     }
 
-    private fun openBottomSheet() {
-        val showDialogFragment = ActionBottom.newInstance()
-        showDialogFragment.show(
-            supportFragmentManager, ActionBottom.TAG
-        )
-    }
-
-    private fun selectTab(fragment: Fragment) {
+    private fun selectTab(fragment: Fragment, tag: String = "") {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()
     }
-
-    override fun onItemClick(item: String?, dateFrom: String?, dateTo: String?) {
-
-        when (item) {
-            SORT_POPULARITY -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_POPULARITY, null,null))
-            }
-            SORT_TITLE_ASCENDING -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_TITLE_ASCENDING, null, null))
-            }
-            SORT_DATE_ASCENDING -> {
-                selectTab(FilterArticlesFragment.getNewInstance(SORT_DATE_ASCENDING, null, null))
-            }
-            GET_RESULT_BUTTON -> {
-                selectTab(FilterArticlesFragment.getNewInstance(GET_RESULT_BUTTON, dateFrom, dateTo))
-            }
-
-
-        }
-
-    }
 }
+
