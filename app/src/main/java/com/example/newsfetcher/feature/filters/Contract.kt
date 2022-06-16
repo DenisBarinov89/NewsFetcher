@@ -23,6 +23,6 @@ sealed class UIEvent : Event {
 sealed class DataEvent : Event {
 
     data class LoadSortedArticles(val sortBy: String = GET_ARTICLES_BY_POPULARITY) : DataEvent()
-    data class LoadFilterArticlesByDate(val sortBy: String = GET_ARTICLES_BY_PUBLISHED_AT, val dateFrom: String, val dateTo: String) : DataEvent()
+    data class LoadFilterArticlesByDate(val dateFrom: String, val dateTo: String) : DataEvent()
     data class OnLoadSortedArticlesSucceed(val filterArticles: List<ArticleModel>) : DataEvent()
 }

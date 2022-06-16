@@ -23,10 +23,10 @@ interface NewsApi {
 
     @GET("v2/everything")
     suspend fun getArticlesFilterByDate(
-        @Query("language") country: String = "en",
+        @Query("q") q: String = "all",
         @Query("from") dateFrom: String,
         @Query("to") dateTo: String,
-        @Query("q") q: String = "all",
+        @Query("language") country: String = "ru",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
 

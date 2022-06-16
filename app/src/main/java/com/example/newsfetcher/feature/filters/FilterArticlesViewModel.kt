@@ -41,7 +41,7 @@ class FilterArticlesViewModel(
                 viewModelScope.launch {
                     interactor.getArticlesSortBy(event.sortBy).fold(
                         onError = {},
-                        onSuccess = {
+                        onSuccess = { it ->
                             if (event.sortBy == SORT_TITLE_ASCENDING)
                             processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it.sortedBy { it.title }))
                             else

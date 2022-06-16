@@ -2,7 +2,9 @@
     <string name="app_name">NewsFetcher</string>
     <string name="main">Главная</string>
     <string name="bookmarks">Избранное</string>
-    <string name="appName">News Fetcher</string>
+    <string name="mains_screen_title">Top Headlines</string>
+    <string name="filter_screen_title">Search news</string>
+    <string name="bookmarks_screen_title">Bookmarks</string>
     <string name="filters_menu_name">Фильтры</string>
     <string name="filter_sort_name">Сортировать по</string>
     <string name="sort_name_date_descending">По дате</string>
