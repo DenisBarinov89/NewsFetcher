@@ -7,7 +7,6 @@ import com.example.newsfetcher.feature.bookmarks.di.BOOKMARKS_TABLE
 @Dao
 interface BookmarksDao {
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun create(entity: BookmarkEntity)
 

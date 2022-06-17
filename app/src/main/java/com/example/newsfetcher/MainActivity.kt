@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
             .commit()
 
@@ -40,14 +38,9 @@ class MainActivity : AppCompatActivity() {
                         selectTab(BookmarksFragment())
                     }
                 }
-                R.id.itemFilter -> {
+                R.id.itemSearch -> {
                     if (bottomNavigationMenu.selectedItemId != it.itemId) {
                         selectTab(FilterArticlesFragment())
-                    } else {
-                        val fr = supportFragmentManager.findFragmentById(R.id.container)
-                        if (fr is FilterArticlesFragment) {
-                            fr.openBottomSheet()
-                        }
                     }
                 }
                 else -> {}
@@ -56,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun selectTab(fragment: Fragment, tag: String = "") {
+    private fun selectTab(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()
     }

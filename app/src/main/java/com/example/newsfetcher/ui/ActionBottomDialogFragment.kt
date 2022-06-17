@@ -33,24 +33,19 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         tvDateAscending.setOnClickListener(this)
         tvPopularity.setOnClickListener(this)
         tvTitleAscending.setOnClickListener(this)
         btnGetFilterResult.setOnClickListener(this)
-
-        etDateFrom.setOnClickListener {
-            showDatePicker(it, etDateFrom)
+        tvDateFrom.setOnClickListener {
+            showDatePicker(it, tvDateFrom)
         }
-
-        etDateTo.setOnClickListener {
-            showDatePicker(it, etDateTo)
+        tvDateTo.setOnClickListener {
+            showDatePicker(it, tvDateTo)
         }
     }
 
-    fun showDatePicker(view: View, editText : EditText) {
-
+    private fun showDatePicker(view: View, tvDate : TextView) {
         val formatDate = SimpleDateFormat("yyyy-MM-dd")
         val mCalendar = Calendar.getInstance()
         val dateRange = mCalendar
@@ -60,7 +55,7 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
             mCalendar[Calendar.MONTH] = mMonth
             mCalendar[Calendar.DAY_OF_MONTH] = mDay
             val date = formatDate.format(mCalendar.time)
-            editText.setText(date)
+            tvDate.text = date
         }, mCalendar[Calendar.YEAR], mCalendar[Calendar.MONTH], mCalendar[Calendar.DAY_OF_MONTH])
 
         dateRange.set(mCalendar.get(Calendar.YEAR),mCalendar.get(Calendar.MONTH),mCalendar.get(Calendar.DAY_OF_MONTH) - 30)
@@ -70,11 +65,9 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
         mDialog.datePicker.maxDate = mCalendar.timeInMillis
 
         mDialog.show()
-
     }
 
     override fun onClick(p0: View?) {
-
         val checkElementType : Boolean = p0 is Button
         if (!checkElementType) {
             p0 as TextView
@@ -82,7 +75,7 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
             dismiss()
         } else {
             p0 as Button
-            mListener.onItemClick(p0.text.toString(), dateFrom = etDateFrom.text.toString(), dateTo = etDateTo.text.toString())
+            mListener.onItemClick(p0.text.toString(), dateFrom = tvDateFrom.text.toString(), dateTo = tvDateTo.text.toString())
             dismiss()
         }
     }

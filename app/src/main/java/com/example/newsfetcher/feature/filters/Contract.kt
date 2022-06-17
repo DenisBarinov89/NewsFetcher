@@ -6,23 +6,22 @@ import com.example.newsfetcher.base.Event
 import com.example.newsfetcher.feature.domain.ArticleModel
 
 data class FiltersViewState(
+    val isFiltersEnabled: Boolean,
     val filterArticles: List<ArticleModel>,
     val articlesShown: List<ArticleModel>
 )
 
 sealed class UIEvent : Event {
-
-    object OnTestPreviousViewState : UIEvent()
-    object FilterSortByPopularityClicked : UIEvent()
-    object FilterSortByTitleClicked : UIEvent()
-    object FilterSortByDateClicked : UIEvent()
-    data class ShowResultDateFilterButtonClicked(val dateFrom: String, val dateTo: String) : UIEvent()
-
+    data class FilterSortByPopularityClicked(val q: String) : UIEvent()
+    data class FilterSortByTitleClicked(val q: String) : UIEvent()
+    data class FilterSortByDateClicked(val q: String) : UIEvent()
+    data class ShowResultDateFilterButtonClicked(val dateFrom: String, val dateTo: String, val q: String) : UIEvent()
+    data class OnFindArticlesButtonClicked(val q: String) : UIEvent()
 }
 
 sealed class DataEvent : Event {
-
-    data class LoadSortedArticles(val sortBy: String = GET_ARTICLES_BY_POPULARITY) : DataEvent()
-    data class LoadFilterArticlesByDate(val dateFrom: String, val dateTo: String) : DataEvent()
+    data class LoadSortedArticles(val sortBy: String = GET_ARTICLES_BY_POPULARITY, val q: String) : DataEvent()
+    data class LoadFilterArticlesByDate(val dateFrom: String, val dateTo: String, val q: String) : DataEvent()
     data class OnLoadSortedArticlesSucceed(val filterArticles: List<ArticleModel>) : DataEvent()
+    data class LoadArticlesByRequest(val q: String) : DataEvent()
 }

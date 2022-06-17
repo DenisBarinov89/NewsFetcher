@@ -24,7 +24,5 @@ class BookmarksInteractor(private val bookmarksRepository: BookmarksRepository) 
 
     suspend fun delete(model: ArticleModel) {
         attempt { bookmarksRepository.delete(model) }
-
     }
-
 }

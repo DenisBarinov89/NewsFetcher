@@ -9,7 +9,7 @@ interface NewsApi {
 
     @GET("v2/top-headlines")
     suspend fun getArticles(
-        @Query("country") country: String = "ru",
+        @Query("country") country: String = "us",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
 
@@ -17,16 +17,16 @@ interface NewsApi {
     suspend fun getArticlesSortedBy(
         @Query("language") country: String = "en",
         @Query("sortBy") sortBy: String,
-        @Query("q") q: String = "all",
+        @Query("q") q: String,
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
 
     @GET("v2/everything")
     suspend fun getArticlesFilterByDate(
-        @Query("q") q: String = "all",
+        @Query("q") q: String,
         @Query("from") dateFrom: String,
         @Query("to") dateTo: String,
-        @Query("language") country: String = "ru",
+        @Query("language") country: String = "en",
         @Query("apiKey") apiKey: String = API_KEY
     ) : ArticlesRemoteModel
 

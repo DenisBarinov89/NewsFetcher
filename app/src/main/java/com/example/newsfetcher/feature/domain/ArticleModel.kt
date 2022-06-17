@@ -10,6 +10,5 @@ data class ArticleModel(
     val urlToImage: String,
     val publishedAt: String,
     var bookmarkAddedFlag: Boolean = false
-
 ) {
 }

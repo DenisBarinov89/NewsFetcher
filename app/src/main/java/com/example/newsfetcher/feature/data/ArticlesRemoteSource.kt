@@ -8,12 +8,12 @@ class ArticlesRemoteSource(private val api: NewsApi) {
         return api.getArticles()
     }
 
-    suspend fun getArticlesSortedBy(sortBy: String) : ArticlesRemoteModel {
-        return api.getArticlesSortedBy(sortBy = sortBy)
+    suspend fun getArticlesSortedBy(sortBy: String, q: String) : ArticlesRemoteModel {
+        return api.getArticlesSortedBy(sortBy = sortBy, q = q)
     }
 
-    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String) : ArticlesRemoteModel {
-        return api.getArticlesFilterByDate(dateFrom = dateFrom, dateTo = dateTo)
+    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String, q: String) : ArticlesRemoteModel {
+        return api.getArticlesFilterByDate(dateFrom = dateFrom, dateTo = dateTo, q = q)
     }
 
 }

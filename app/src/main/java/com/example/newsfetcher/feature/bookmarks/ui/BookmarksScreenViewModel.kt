@@ -14,7 +14,6 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
         processDataEvent(DataEvent.LoadBookmarks)
     }
 
-
     override fun initialViewState(): ViewState = ViewState(bookmarksArticle = emptyList())
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {

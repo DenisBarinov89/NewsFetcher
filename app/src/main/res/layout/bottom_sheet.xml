@@ -67,28 +67,41 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Дата"
+            android:text="@string/bottom_sheet_filter_by_date_title"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
-            <EditText
-                android:id="@+id/etDateFrom"
+            <TextView
+                android:id="@+id/tvDateFrom"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="0.5"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginEnd="8dp"
+                android:paddingStart="5dp"
                 android:hint="@string/et_date_from_hint" />
 
-
-            <EditText
-                android:id="@+id/etDateTo"
+            <TextView
+                android:id="@+id/tvDateTo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_weight="0.5"
-                android:hint="@string/et_date_to_hint" />
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_corners"
+                android:paddingStart="5dp"
+                android:layout_marginStart="8dp"
+                android:hint="@string/et_date_to_hint">
+
+            </TextView>
         </LinearLayout>
 
         <Button

@@ -3,6 +3,7 @@ package com.example.newsfetcher.feature.filters
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.GET_ARTICLES_BY_POPULARITY
 import com.example.newsfetcher.GET_ARTICLES_BY_PUBLISHED_AT
+import com.example.newsfetcher.SORT_DATE_ASCENDING
 import com.example.newsfetcher.SORT_TITLE_ASCENDING
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
@@ -13,65 +14,59 @@ class FilterArticlesViewModel(
     private val interactor: ArticlesInteractor
 ) : BaseViewModel<FiltersViewState>() {
 
-//    init {
-//        processDataEvent(DataEvent.LoadFilterArticles)
-//    }
-
     override fun initialViewState(): FiltersViewState =
-        FiltersViewState(filterArticles = emptyList(), articlesShown = emptyList())
+        FiltersViewState(filterArticles = emptyList(), articlesShown = emptyList(), isFiltersEnabled = false)
 
     override fun reduce(event: Event, previousState: FiltersViewState): FiltersViewState? {
 
         when (event) {
-
+            is UIEvent.OnFindArticlesButtonClicked -> {
+                processDataEvent(DataEvent.LoadArticlesByRequest(q = event.q))
+            }
             is UIEvent.FilterSortByDateClicked -> {
-                processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_PUBLISHED_AT))
+                return previousState.copy(articlesShown = previousState.articlesShown.sortedBy { it.publishedAt })
             }
             is UIEvent.FilterSortByPopularityClicked -> {
-                processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_POPULARITY))
+                processDataEvent(DataEvent.LoadSortedArticles(sortBy = GET_ARTICLES_BY_POPULARITY, q = event.q))
             }
             is UIEvent.FilterSortByTitleClicked -> {
-                processDataEvent(DataEvent.LoadSortedArticles(sortBy = SORT_TITLE_ASCENDING))
+                return previousState.copy(articlesShown = previousState.articlesShown.sortedBy { it.title })
             }
             is UIEvent.ShowResultDateFilterButtonClicked -> {
-                processDataEvent(DataEvent.LoadFilterArticlesByDate(dateFrom = event.dateFrom, dateTo = event.dateTo))
+                processDataEvent(DataEvent.LoadFilterArticlesByDate(dateFrom = event.dateFrom, dateTo = event.dateTo, q = event.q))
             }
-
             is DataEvent.LoadSortedArticles -> {
                 viewModelScope.launch {
-                    interactor.getArticlesSortBy(event.sortBy).fold(
+                    interactor.getArticlesSortBy(event.sortBy, event.q).fold(
                         onError = {},
-                        onSuccess = { it ->
-                            if (event.sortBy == SORT_TITLE_ASCENDING)
-                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it.sortedBy { it.title }))
-                            else
-                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it)) }
+                        onSuccess = { processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it)) }
                     )
                 }
             }
-
             is DataEvent.LoadFilterArticlesByDate -> {
                 viewModelScope.launch {
-                    interactor.getArticlesFilterByDate(dateFrom = event.dateFrom, dateTo = event.dateTo).fold(
+                    interactor.getArticlesFilterByDate(dateFrom = event.dateFrom, dateTo = event.dateTo, event.q).fold(
                         onError = {},
                         onSuccess = {
                             processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it))
                         }
                     )
-
                 }
-
             }
-
-
+            is DataEvent.LoadArticlesByRequest -> {
+                viewModelScope.launch {
+                    interactor.getArticlesSortBy(sortBy = SORT_DATE_ASCENDING, q = event.q).fold(
+                        onError = {},
+                        onSuccess = {
+                            processDataEvent(DataEvent.OnLoadSortedArticlesSucceed(it))
+                        }
+                    )
+                }
+            }
             is DataEvent.OnLoadSortedArticlesSucceed -> {  //вывод полученных статей на экран
-                return previousState.copy(articlesShown = event.filterArticles)
+                return previousState.copy(articlesShown = event.filterArticles, isFiltersEnabled = true)
             }
-
-//            is UIEvent.OnTestPreviousViewState -> {
-//                return previousState.copy(articlesShown = previousState.filterArticles.sortedBy { it.title })
-//            }
         }
-        return null
+       return null
     }
 }

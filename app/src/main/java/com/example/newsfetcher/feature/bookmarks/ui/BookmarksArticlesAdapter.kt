@@ -22,24 +22,20 @@ class BookmarksArticlesAdapter(val onItemClicked: (Int) -> Unit) : RecyclerView.
         }
     }
 
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_article, viewGroup, false)
         return ViewHolder(view)
     }
 
-
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         viewHolder.itemView.setOnClickListener {
             onItemClicked.invoke(position)
         }
-
         viewHolder.tvTitle.text = articlesData[position].title
         viewHolder.textDate.text = articlesData[position].publishedAt
     }
-
 
     override fun getItemCount() = articlesData.size
 

@@ -21,6 +21,5 @@ class BookmarksRepositoryImpl(private val bookmarksLocalSource: BookmarksLocalSo
 
     override suspend fun delete(model: ArticleModel) {
         bookmarksLocalSource.delete(model.toEntity())
-
     }
 }

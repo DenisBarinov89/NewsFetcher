@@ -13,8 +13,8 @@
         />
 
     <item
-        android:id="@+id/itemFilter"
+        android:id="@+id/itemSearch"
         android:icon="@drawable/ic_search"
-        android:title="Фильтр"
+        android:title="@string/ic_item_search"
         />
 </menu>

@@ -19,13 +19,10 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
         viewModel.processUIEvent(UiEvent.OnBookmarkedArticleClicked(index))
     } }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
         rvArticles.adapter = adapter
-
     }
 
     private fun render(viewState: com.example.newsfetcher.feature.bookmarks.ui.ViewState) {

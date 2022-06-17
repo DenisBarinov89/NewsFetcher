@@ -8,5 +8,4 @@ class ActionBottom {
             return ActionBottomDialogFragment(mListener)
         }
     }
-
 }

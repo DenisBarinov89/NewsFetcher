@@ -18,13 +18,11 @@ class MainScreenViewModel(
         processDataEvent(DataEvent.LoadArticles)
     }
 
-
-    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList(), isSearchEnabled = false)
+    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList())
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
 
         when (event) {
-
             is DataEvent.LoadArticles -> {
                 viewModelScope.launch {
                     interactor.getArticles().fold(
@@ -45,14 +43,6 @@ class MainScreenViewModel(
                     bookmarksInteractor.create(previousState.articlesShown[event.index])
                 }
                 return null
-            }
-            is UIEvent.OnSearchButtonClicked -> {
-                return previousState.copy(articlesShown = if (previousState.isSearchEnabled) previousState.articles else previousState.articlesShown, isSearchEnabled = !previousState.isSearchEnabled)
-            }
-            is UIEvent.OnSearchEdit -> {
-                return previousState.copy(articlesShown = previousState.articles.filter {
-                    it.title.contains(event.text)
-                })
             }
             else -> return null
         }

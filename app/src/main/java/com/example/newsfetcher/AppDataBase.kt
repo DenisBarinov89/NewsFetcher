@@ -9,6 +9,4 @@ import com.example.newsfetcher.feature.bookmarks.data.local.model.BookmarkEntity
 abstract class AppDataBase : RoomDatabase(){
 
     abstract fun bookmarksDao() : BookmarksDao
-
-
 }

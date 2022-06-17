@@ -9,14 +9,15 @@ class ArticlesInteractor(private val repository: ArticlesRepository) {
     //еще раз объяснить, что такое attempt
     suspend fun getArticles() = attempt { repository.getArticles() }
 
-    suspend fun getArticlesSortBy(sortBy: String) =
-        attempt { repository.getArticlesSortedBy(sortBy) }
+    suspend fun getArticlesSortBy(sortBy: String, q: String) =
+        attempt { repository.getArticlesSortedBy(sortBy, q) }
 
-    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String) =
+    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String, q: String) =
         attempt {
             repository.getArticlesFilterByDate(
                 dateFrom = dateFrom,
-                dateTo = dateTo
+                dateTo = dateTo,
+                q = q
             )
         }
 }

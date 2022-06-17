@@ -1,20 +1,24 @@
 <resources>
     <string name="app_name">NewsFetcher</string>
-    <string name="main">Главная</string>
-    <string name="bookmarks">Избранное</string>
+    <string name="main">Top Headlines</string>
+    <string name="bookmarks">Bookmarks</string>
     <string name="mains_screen_title">Top Headlines</string>
     <string name="filter_screen_title">Search news</string>
     <string name="bookmarks_screen_title">Bookmarks</string>
-    <string name="filters_menu_name">Фильтры</string>
-    <string name="filter_sort_name">Сортировать по</string>
-    <string name="sort_name_date_descending">По дате</string>
-    <string name="sort_name_popularity">По популярности</string>
-    <string name="sort_name_title">По алфавиту</string>
+    <string name="filters_menu_name">Filters</string>
+    <string name="filter_sort_name">Sort news by</string>
+    <string name="sort_name_date_descending">Date</string>
+    <string name="sort_name_popularity">Popularity</string>
+    <string name="sort_name_title">Title</string>
     <string name="actionShare">Share with Friends</string>
     <string name="actionFavorites">Add to favorites</string>
     <string name="actionBookmark">Bookmark</string>
     <string name="actionInfo">More information</string>
-    <string name="et_date_from_hint">От</string>
-    <string name="et_date_to_hint">До</string>
-    <string name="button_show_filter_result">Показать результаты</string>
+    <string name="et_date_from_hint">From</string>
+    <string name="et_date_to_hint">To</string>
+    <string name="button_show_filter_result">Show results</string>
+    <string name="ic_item_search">Search</string>
+    <string name="button_name_find_news">Find</string>
+    <string name="edit_text_search_request_hint">Default: All news</string>
+    <string name="bottom_sheet_filter_by_date_title">Filter news by Date</string>
 </resources>

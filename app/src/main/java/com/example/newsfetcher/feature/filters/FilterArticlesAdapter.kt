@@ -24,7 +24,6 @@ class FilterArticlesAdapter() : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticlesAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_article, parent, false)

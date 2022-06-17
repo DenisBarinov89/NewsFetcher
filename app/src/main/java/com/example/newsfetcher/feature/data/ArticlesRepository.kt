@@ -6,8 +6,8 @@ interface ArticlesRepository {
 
     suspend fun getArticles() : List<ArticleModel>
 
-    suspend fun getArticlesSortedBy(sortBy: String) : List<ArticleModel>
+    suspend fun getArticlesSortedBy(sortBy: String, q: String) : List<ArticleModel>
 
-    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String) : List<ArticleModel>
+    suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String, q: String) : List<ArticleModel>
 
 }

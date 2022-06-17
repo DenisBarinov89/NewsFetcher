@@ -20,5 +20,4 @@ data class ArticleRemoteModel(
 
     @SerializedName("publishedAt")
     val publishedAt: String?
-) {
-}
+)
