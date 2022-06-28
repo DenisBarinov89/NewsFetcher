@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.mainscreen
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
@@ -12,18 +13,16 @@ class MainScreenViewModel(
     private val bookmarksInteractor: BookmarksInteractor
 ) : BaseViewModel<ViewState>() {
 
-    //запуск события при инициализации ВьюМодели
+    //запуск события при инициализации ВьюМодели, подгружаем наши новости
     init {
         processDataEvent(DataEvent.LoadArticles)
     }
 
-
-    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList(), isSearchEnabled = false)
+    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList())
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
 
         when (event) {
-
             is DataEvent.LoadArticles -> {
                 viewModelScope.launch {
                     interactor.getArticles().fold(
@@ -39,18 +38,11 @@ class MainScreenViewModel(
                 return previousState.copy(articles = event.articles, articlesShown = event.articles)
             }
             is UIEvent.OnArticleClicked -> {
+                previousState.articles[event.index].bookmarkAddedFlag = true
                 viewModelScope.launch {
                     bookmarksInteractor.create(previousState.articlesShown[event.index])
                 }
                 return null
-            }
-            is UIEvent.OnSearchButtonClicked -> {
-                return previousState.copy(articlesShown = if (previousState.isSearchEnabled) previousState.articles else previousState.articlesShown, isSearchEnabled = !previousState.isSearchEnabled)
-            }
-            is UIEvent.OnSearchEdit -> {
-                return previousState.copy(articlesShown = previousState.articles.filter {
-                    it.title.contains(event.text)
-                })
             }
             else -> return null
         }

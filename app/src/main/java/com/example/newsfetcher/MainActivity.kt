@@ -2,10 +2,19 @@ package com.example.newsfetcher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.example.newsfetcher.feature.bookmarks.ui.BookmarksFragment
+import com.example.newsfetcher.feature.filters.FilterArticlesFragment
 import com.example.newsfetcher.feature.mainscreen.MainScreenFragment
+import com.example.newsfetcher.feature.mainscreen.MainScreenViewModel
+import com.example.newsfetcher.ui.ActionBottom
+import com.example.newsfetcher.ui.ActionBottomDialogFragment
+import com.example.newsfetcher.ui.ItemClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,26 +23,35 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
+            .commit()
 
         bottomNavigationMenu.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.itemMain -> {
-                    selectTab(MainScreenFragment())
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(MainScreenFragment())
+                    }
                 }
-
                 R.id.itemBookbarks -> {
-                    selectTab(BookmarksFragment())
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(BookmarksFragment())
+                    }
+                }
+                R.id.itemSearch -> {
+                    if (bottomNavigationMenu.selectedItemId != it.itemId) {
+                        selectTab(FilterArticlesFragment())
+                    }
                 }
                 else -> {}
             }
             true
         }
-
-        bottomNavigationMenu.selectedItemId = R.id.itemMain
     }
 
     private fun selectTab(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
+            .commit()
     }
-
 }
+

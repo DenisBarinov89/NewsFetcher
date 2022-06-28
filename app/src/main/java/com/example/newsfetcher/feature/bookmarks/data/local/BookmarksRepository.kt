@@ -12,5 +12,4 @@ interface BookmarksRepository {
     suspend fun update(model: ArticleModel)
 
     suspend fun delete(model: ArticleModel)
-
 }

@@ -9,4 +9,18 @@ class ArticlesRepositoryImpl(private val source: ArticlesRemoteSource) : Article
                 it.toDomain()
             }
     }
+
+    override suspend fun getArticlesSortedBy(sortBy: String, q: String): List<ArticleModel> {
+        return source.getArticlesSortedBy(sortBy = sortBy, q = q).articleList.map {
+            it.toDomain()
+        }
+    }
+
+    override suspend fun getArticlesFilterByDate(dateFrom: String, dateTo: String, q: String): List<ArticleModel> {
+        return source.getArticlesFilterByDate(dateFrom = dateFrom, dateTo = dateTo, q = q).articleList.map {
+            it.toDomain()
+        }
+    }
+
+
 }

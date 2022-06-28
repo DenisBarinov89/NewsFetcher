@@ -11,4 +11,10 @@
         android:icon="@drawable/ic_bookmarks"
         android:title="@string/bookmarks"
         />
+
+    <item
+        android:id="@+id/itemSearch"
+        android:icon="@drawable/ic_search"
+        android:title="@string/ic_item_search"
+        />
 </menu>

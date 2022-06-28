@@ -17,52 +17,21 @@ class MainScreenFragment : Fragment(R.layout.fragment_main_screen) {
 
     private val viewModel: MainScreenViewModel by viewModel()
     private val rvArticles: RecyclerView by lazy { requireActivity().findViewById(R.id.rvArticles) }
-    private val ivSearch: ImageView by lazy { requireActivity().findViewById(R.id.ivSearch) }
-    private val tvTitle: TextView by lazy { requireActivity().findViewById(R.id.tvTitle) }
-    private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
-
     private val adapter: ArticlesAdapter by lazy {
         ArticlesAdapter { index ->
-            viewModel.processUIEvent(UIEvent.OnArticleClicked(index))
+            viewModel.processUIEvent(UIEvent.OnArticleClicked(index)
+            )
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
         rvArticles.adapter = adapter
-
-        ivSearch.setOnClickListener {
-
-            viewModel.processUIEvent(UIEvent.OnSearchButtonClicked)
-
-        }
-
-        etSearch.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun afterTextChanged(text: Editable?) {
-                viewModel.processUIEvent(UIEvent.OnSearchEdit(text.toString()))
-            }
-
-
-        })
-
     }
 
     private fun render(viewState: ViewState) {
-        tvTitle.isVisible = !viewState.isSearchEnabled
-        etSearch.isVisible = viewState.isSearchEnabled
         adapter.setData(viewState.articlesShown)
-
-
     }
 
 }
