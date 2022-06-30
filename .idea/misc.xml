@@ -4,9 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_add_to_bookmarks.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_back_from_article_screen.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_bookmark_added.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_bookmarks.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_delete_from_bookmarks.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_selected_to_bookmarks.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/rounded_corners.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/bottom_sheet.xml" value="0.365625" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_article_screen.xml" value="0.365625" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_bookmarks.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_filter_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_filter_screen.xml" value="0.36666666666666664" />

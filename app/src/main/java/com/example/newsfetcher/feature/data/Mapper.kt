@@ -12,5 +12,6 @@ fun ArticleRemoteModel.toDomain() = ArticleModel(
     description = description ?: "",
     url = url ?: "",
     urlToImage = urlToImage ?: "",
-    publishedAt = publishedAt ?: ""
+    publishedAt = publishedAt ?: "",
+    content = content ?: ""
 )

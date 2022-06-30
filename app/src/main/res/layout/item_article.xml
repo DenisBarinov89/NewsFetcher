@@ -22,9 +22,28 @@
         android:id="@+id/ivBookmarkAdded"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
+        android:layout_gravity="bottom|end"
         android:layout_margin="8dp"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_bookmark_added" />
+        android:src="@drawable/ic_selected_to_bookmarks" />
+
+    <ImageView
+        android:id="@+id/ivAddToBookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_add_to_bookmarks" />
+
+    <ImageView
+        android:id="@+id/ivDeleteFromBookmarks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        android:src="@drawable/ic_delete_from_bookmarks"
+        />
 
 </androidx.cardview.widget.CardView>

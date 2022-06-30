@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.mainscreen
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.base.BaseViewModel

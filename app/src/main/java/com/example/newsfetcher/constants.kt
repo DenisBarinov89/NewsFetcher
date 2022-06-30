@@ -14,3 +14,6 @@ const val GET_ARTICLES_BY_RELEVANCY = "relevancy"
 
 //Текст кнопок
 const val GET_RESULT_BUTTON = "Show results"
+
+//Ключи для передачи данных между фрагментами
+const val BUNDLE_KEY_FOR_ARTICLE_MODEL = "article"

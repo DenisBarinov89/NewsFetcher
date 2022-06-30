@@ -25,5 +25,8 @@ data class BookmarkEntity(
     val author: String?,
 
     @ColumnInfo(name = "publishedAt")
-    val publishedAt: String
+    val publishedAt: String,
+
+    @ColumnInfo(name = "content")
+    val content: String
 )
