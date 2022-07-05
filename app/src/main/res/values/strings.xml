@@ -21,4 +21,5 @@
     <string name="button_name_find_news">Find</string>
     <string name="edit_text_search_request_hint">Default: All news</string>
     <string name="bottom_sheet_filter_by_date_title">Filter news by Date</string>
+    <string name="no_bookmarks">No Bookmarks</string>
 </resources>

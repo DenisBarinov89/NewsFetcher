@@ -7,15 +7,16 @@ import com.example.newsfetcher.SORT_DATE_ASCENDING
 import com.example.newsfetcher.SORT_TITLE_ASCENDING
 import com.example.newsfetcher.base.BaseViewModel
 import com.example.newsfetcher.base.Event
+import com.example.newsfetcher.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsfetcher.feature.domain.ArticlesInteractor
 import kotlinx.coroutines.launch
 
 class FilterArticlesViewModel(
-    private val interactor: ArticlesInteractor
+    private val interactor: ArticlesInteractor, private val bookmarksInteractor: BookmarksInteractor
 ) : BaseViewModel<FiltersViewState>() {
 
     override fun initialViewState(): FiltersViewState =
-        FiltersViewState(filterArticles = emptyList(), articlesShown = emptyList(), isFiltersEnabled = false)
+        FiltersViewState(filterArticles = emptyList(), articlesShown = emptyList(), isFiltersEnabled = false, isSearchResultsEmpty = true)
 
     override fun reduce(event: Event, previousState: FiltersViewState): FiltersViewState? {
 
@@ -35,6 +36,14 @@ class FilterArticlesViewModel(
             is UIEvent.ShowResultDateFilterButtonClicked -> {
                 processDataEvent(DataEvent.LoadFilterArticlesByDate(dateFrom = event.dateFrom, dateTo = event.dateTo, q = event.q))
             }
+            is UIEvent.OnAddToBookmarksClicked -> {
+                previousState.articlesShown[event.index].bookmarkAddedFlag = true
+                viewModelScope.launch {
+                    bookmarksInteractor.create(previousState.articlesShown[event.index])
+                }
+                return null
+            }
+
             is DataEvent.LoadSortedArticles -> {
                 viewModelScope.launch {
                     interactor.getArticlesSortBy(event.sortBy, event.q).fold(
@@ -64,7 +73,7 @@ class FilterArticlesViewModel(
                 }
             }
             is DataEvent.OnLoadSortedArticlesSucceed -> {  //вывод полученных статей на экран
-                return previousState.copy(articlesShown = event.filterArticles, isFiltersEnabled = true)
+                return previousState.copy(articlesShown = event.filterArticles, isFiltersEnabled = true, isSearchResultsEmpty = event.filterArticles.isEmpty())
             }
         }
        return null

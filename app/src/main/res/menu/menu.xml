@@ -4,17 +4,19 @@
         android:id="@+id/itemMain"
         android:icon="@drawable/ic_main"
         android:title="@string/main"
+
         />
 
     <item
         android:id="@+id/itemBookbarks"
         android:icon="@drawable/ic_bookmarks"
         android:title="@string/bookmarks"
-        />
+                />
 
     <item
         android:id="@+id/itemSearch"
         android:icon="@drawable/ic_search"
         android:title="@string/ic_item_search"
+
         />
 </menu>

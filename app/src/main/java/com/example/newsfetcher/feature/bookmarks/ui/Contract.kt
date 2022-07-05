@@ -5,11 +5,12 @@ import com.example.newsfetcher.feature.domain.ArticleModel
 
 
 data class ViewState(
-    val bookmarksArticle: List<ArticleModel>
+    val bookmarksArticle: List<ArticleModel>,
+    var isBookmarksEmpty: Boolean
 )
 
 sealed class UiEvent() : Event {
-    data class OnBookmarkedArticleClicked(val index: Int) : UiEvent()
+    data class OnDeleteFromBookmarksClicked(val index: Int) : UiEvent()
 }
 
 sealed class DataEvent() : Event {

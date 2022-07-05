@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    android:background="?colorBackgroundPrimary"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -42,7 +42,7 @@
 
                     <ImageView
                         android:id="@+id/btnBackFromArticleScreen"
-                        android:layout_width="50dp"
+                        android:layout_width="32dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/ic_back_from_article_screen"
                         />
@@ -67,14 +67,12 @@
 
             <TextView
                 android:id="@+id/tvArticleTitle"
+                style="@style/BoldText.ArticleTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,13 +80,12 @@
 
             <TextView
                 android:id="@+id/tvArticleDescription"
+                style="@style/DescriptionText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textColor="@color/black"
-                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,12 +93,12 @@
 
             <TextView
                 android:id="@+id/tvArticleContent"
+                style="@style/MediumText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvArticleDescription" />

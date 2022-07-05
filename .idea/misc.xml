@@ -3,23 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/bottom_sheet_background.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_add_to_bookmarks.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_back_from_article_screen.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_baseline_error_24.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_bookmark_added.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_bookmarks.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_delete_from_bookmarks.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_empty_bookmarks.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_filter_list.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_image_missing.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_main.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_no_search_results.xml" value="0.2395" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_search.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/ic_selected_to_bookmarks.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/drawable/rounded_corners.xml" value="0.2395" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/bottom_sheet.xml" value="0.365625" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_article_screen.xml" value="0.365625" />
-        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_bookmarks.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_bookmarks.xml" value="0.33" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_filter_menu.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_filter_screen.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_filter_screen.xml" value="0.33" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/fragment_main_screen.xml" value="0.33" />
-        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/item_article.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/layout/item_article.xml" value="0.29717180244829045" />
         <entry key="..\:/Users/PENETRON/AndroidStudioProjects/NewsFetcher/app/src/main/res/menu/menu.xml" value="0.36666666666666664" />
       </map>
     </option>

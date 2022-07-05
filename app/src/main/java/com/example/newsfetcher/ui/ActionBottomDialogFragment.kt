@@ -2,6 +2,7 @@ package com.example.newsfetcher.ui
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.widget.ArrayAdapter
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.text.Editable
@@ -9,11 +10,9 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import com.example.newsfetcher.R
+import com.example.newsfetcher.SORT_LIST
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.bottom_sheet.*
 import java.lang.RuntimeException
@@ -22,8 +21,7 @@ import java.util.*
 
 class ActionBottomDialogFragment(private var mListener:ItemClickListener) : BottomSheetDialogFragment(), View.OnClickListener {
 
-
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +41,8 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
         tvDateTo.setOnClickListener {
             showDatePicker(it, tvDateTo)
         }
+
+
     }
 
     private fun showDatePicker(view: View, tvDate : TextView) {
@@ -50,7 +50,7 @@ class ActionBottomDialogFragment(private var mListener:ItemClickListener) : Bott
         val mCalendar = Calendar.getInstance()
         val dateRange = mCalendar
 
-        val mDialog = DatePickerDialog(view.context, android.R.style.Theme_Material_Dialog_MinWidth, { _, mYear, mMonth, mDay ->
+        val mDialog = DatePickerDialog(view.context, android.R.style.Theme_Light_Panel, { _, mYear, mMonth, mDay ->
             mCalendar[Calendar.YEAR] = mYear
             mCalendar[Calendar.MONTH] = mMonth
             mCalendar[Calendar.DAY_OF_MONTH] = mDay

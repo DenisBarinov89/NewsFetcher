@@ -13,7 +13,6 @@ data class ViewState(
 )
 
 sealed class UiEvent() : Event {
-
 }
 
 sealed class DataEvent() : Event {
