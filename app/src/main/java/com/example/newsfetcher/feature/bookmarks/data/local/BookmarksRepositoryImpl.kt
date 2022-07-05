@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.bookmarks.data.local
 
+import android.util.Log
 import com.example.newsfetcher.feature.bookmarks.data.toDomain
 import com.example.newsfetcher.feature.bookmarks.data.toEntity
 import com.example.newsfetcher.feature.domain.ArticleModel

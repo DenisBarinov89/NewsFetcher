@@ -1,5 +1,6 @@
 package com.example.newsfetcher.feature.mainscreen
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.newsfetcher.base.BaseViewModel
@@ -18,7 +19,7 @@ class MainScreenViewModel(
         processDataEvent(DataEvent.LoadArticles)
     }
 
-    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList())
+    override fun initialViewState() = ViewState(articles = emptyList(), articlesShown = emptyList(), isErrorOccurred = false)
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
 
@@ -26,7 +27,9 @@ class MainScreenViewModel(
             is DataEvent.LoadArticles -> {
                 viewModelScope.launch {
                     interactor.getArticles().fold(
-                        onError = {},
+                        onError = {
+                                  processDataEvent(DataEvent.OnLoadArticlesFailed)
+                        },
                         onSuccess = {
                             processDataEvent(DataEvent.OnLoadArticlesSucceed(it))
                         }
@@ -37,6 +40,10 @@ class MainScreenViewModel(
             is DataEvent.OnLoadArticlesSucceed -> {
                 return previousState.copy(articles = event.articles, articlesShown = event.articles)
             }
+            is DataEvent.OnLoadArticlesFailed -> {
+                return previousState.copy(articlesShown = emptyList(), isErrorOccurred = true)
+            }
+
             is UIEvent.OnArticleClicked -> {
                 previousState.articles[event.index].bookmarkAddedFlag = true
                 viewModelScope.launch {

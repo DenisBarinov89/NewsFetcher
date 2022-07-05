@@ -8,7 +8,8 @@ import com.example.newsfetcher.feature.domain.ArticleModel
 data class FiltersViewState(
     val isFiltersEnabled: Boolean,
     val filterArticles: List<ArticleModel>,
-    val articlesShown: List<ArticleModel>
+    val articlesShown: List<ArticleModel>,
+    val isSearchResultsEmpty: Boolean
 )
 
 sealed class UIEvent : Event {
@@ -17,6 +18,7 @@ sealed class UIEvent : Event {
     data class FilterSortByDateClicked(val q: String) : UIEvent()
     data class ShowResultDateFilterButtonClicked(val dateFrom: String, val dateTo: String, val q: String) : UIEvent()
     data class OnFindArticlesButtonClicked(val q: String) : UIEvent()
+    data class OnAddToBookmarksClicked(val index: Int) : UIEvent()
 }
 
 sealed class DataEvent : Event {

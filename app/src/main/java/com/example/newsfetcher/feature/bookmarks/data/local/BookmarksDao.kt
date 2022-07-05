@@ -18,4 +18,5 @@ interface BookmarksDao {
 
     @Delete
     suspend fun delete(entity: BookmarkEntity)
-}
+
+    }

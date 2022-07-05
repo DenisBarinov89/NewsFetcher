@@ -24,8 +24,6 @@ val networkModule = module {
             .client(get()) //подключаем http-клиент (OkhttpClient)
             .build()
     }
-
-
 }
 
 val dataBaseModule = module {

@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val filterModule = module {
 
-    viewModel { FilterArticlesViewModel(get()) }
+    viewModel { FilterArticlesViewModel(interactor = get(), bookmarksInteractor = get()) }
 
 }
