@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.newsfetcher.BUNDLE_KEY_FOR_ARTICLE_MODEL
 import com.example.newsfetcher.R
 import com.example.newsfetcher.feature.domain.ArticleModel
@@ -40,14 +41,12 @@ class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
         val currentArticle : ArticleModel = this.arguments?.get(BUNDLE_KEY_FOR_ARTICLE_MODEL) as ArticleModel
         viewModel.processUIEvent(DataEvent.ShowArticle(currentArticle))
-
         backFromArticleScreenButton.setOnClickListener {
             parentFragmentManager.beginTransaction().remove(this).commit()
         }
 
 
     }
-
 
     private fun render(viewState: ViewState) {
         articleTitle.text = viewState.articleTitle
@@ -59,20 +58,8 @@ class ArticleScreenFragment : Fragment(R.layout.fragment_article_screen) {
 
 
     private fun getImageOfArticleFromUrl(urlToImage: String) {
-        val executor = Executors.newSingleThreadExecutor()
-        val handler = Handler(Looper.getMainLooper())
-        var image: Bitmap?
-        executor.execute {
-            try {
-                val `in` = java.net.URL(urlToImage).openStream()
-                image = BitmapFactory.decodeStream(`in`)
-                handler.post {
-                    articleImage.setImageBitmap(image)
-                }
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }
+        Glide.with(this)
+            .load(urlToImage)
+            .into(articleImage)
     }
 }

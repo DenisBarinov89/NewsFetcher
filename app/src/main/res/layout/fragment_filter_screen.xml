@@ -6,28 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/layoutToolbarFilterScreen"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/grey"
+        android:layout_height="48dp"
+        android:background="?colorPrimary"
         android:elevation="5dp"
         android:orientation="horizontal"
+        android:paddingTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitleFilterScreen"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            style="@style/BoldText.AppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="55dp"
             android:gravity="center_vertical"
             android:text="@string/filter_screen_title"
-
-            android:textSize="16sp"
-            android:visibility="visible"
+            android:layout_weight="0.6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,14 +38,37 @@
             android:layout_height="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/ic_filter_list"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivNoSearchResultNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_no_search_results"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layoutToolbarFilterScreen" />
+
+    <TextView
+        android:id="@+id/tvNoSearchResultNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivNoSearchResultNotification"
+        app:layout_constraintStart_toStartOf="@+id/ivNoSearchResultNotification"
+        app:layout_constraintTop_toBottomOf="@+id/ivNoSearchResultNotification"
+        app:layout_constraintVertical_bias="0.0"
+        android:text="No Search Results"
+        android:visibility="visible"
+        style="@style/Notifications"/>
 
     <LinearLayout
         android:id="@+id/layoutSearchString"
@@ -59,6 +81,7 @@
 
         <EditText
             android:id="@+id/etSearchRequest"
+            style="@style/SmallText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/edit_text_search_request_hint"

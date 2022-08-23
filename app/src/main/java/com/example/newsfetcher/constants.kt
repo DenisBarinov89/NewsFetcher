@@ -17,3 +17,5 @@ const val GET_RESULT_BUTTON = "Show results"
 
 //Ключи для передачи данных между фрагментами
 const val BUNDLE_KEY_FOR_ARTICLE_MODEL = "article"
+
+val SORT_LIST = arrayListOf(SORT_POPULARITY, SORT_DATE_ASCENDING, SORT_TITLE_ASCENDING)

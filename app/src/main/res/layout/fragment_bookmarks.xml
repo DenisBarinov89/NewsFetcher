@@ -4,35 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/layoutToolbarBookmarksScreen"
         android:layout_width="0dp"
-        android:layout_height="56dp"
-        android:background="@color/grey"
-        android:elevation="5dp"
+        android:layout_height="48dp"
         android:orientation="horizontal"
+        android:background="?colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="5dp">
 
         <TextView
             android:id="@+id/tvTitleBookmarksScreen"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            style="@style/BoldText.AppTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:layout_marginHorizontal="16dp"
             android:gravity="center_vertical"
             android:text="@string/bookmarks_screen_title"
-            android:textSize="16sp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
+    </LinearLayout>
 
+    <ImageView
+        android:id="@+id/ivNoBookmarksNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_empty_bookmarks"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/layoutToolbarBookmarksScreen" />
 
+    <TextView
+        android:id="@+id/tvNoBookmarksNotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivNoBookmarksNotification"
+        app:layout_constraintStart_toStartOf="@+id/ivNoBookmarksNotification"
+        app:layout_constraintTop_toBottomOf="@+id/ivNoBookmarksNotification"
+        app:layout_constraintVertical_bias="0.0"
+        android:text="@string/no_bookmarks"
+        android:visibility="visible"
+        style="@style/Notifications"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvBookmarkedArticles"

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BaseTheme">
+
+        <attr name="colorPrimary" format="color"/>
+        <attr name="colorSecondary" format="color"/>
+
+        <attr name="colorBackgroundPrimary" format="color"/>
+        <attr name="colorBlack" format="color"/>
+
+
+        <attr name="colorActiveElementsPrimary" format="color"/>
+        <attr name="colorActiveElementsSecondary" format="color"/>
+
+
+
+
+        <attr name="colorSurfaceMain" format="color|reference"/>
+
+    </declare-styleable>
+</resources>
