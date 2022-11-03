@@ -12,7 +12,7 @@
         <item name="colorActiveElementsPrimary">@color/light_orange</item>
         <item name="colorActiveElementsSecondary">@color/light_grey</item>
         <item name="colorBackgroundPrimary">@color/grey</item>
-        <item name="colorBlack">@color/black</item>
+        <item name="colorBlack">@color/white</item>
     </style>
 
 </resources>

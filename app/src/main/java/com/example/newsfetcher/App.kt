@@ -16,11 +16,12 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         startKoin {
             androidLogger()
             androidContext(this@App)
             modules(networkModule, mainScreenModule, bookmarksModule, dataBaseModule, filterModule, articleScreenModule)
         }
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+
     }
 }
